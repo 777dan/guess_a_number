@@ -11,13 +11,14 @@
 <body>
   <h1>Guess a number</h1>
   <?php
-  $n = $_POST['number']; //Задумане число
+  $n = rand(1, 8); //Задумане число
   $count = 0; // Кількість спроб
   $text = ""; // Текст підсказки
   $nameErr = ""; // Повідомлення про помилку
   $sign = "|";
 
   if (isset($_POST['Submit'])) { // Якщо натиснута кнопка 'Submit'
+    $n = $_POST['number'];
     $count = $_POST['hidden'] + 1; // Збільшуємо лічильник на 1
     echo "Спроба $count\n";
     for ($i=0; $i < $count; $i++) { 
@@ -56,7 +57,7 @@
   <p>Вгадай число от 1 до 8:</p>
   <form action="<?= $_SERVER['PHP_SELF'] ?>" name="myform" method="POST">
     <input type="text" name="my_number" size="5" min="1" max="8"><?= $text ?><?= $nameErr ?><br />
-    <input type="hidden" name="number" size="50" value="<?= rand(1, 8) ?>">
+    <input type="hidden" name="number" size="50" value="<?= $n ?>">
     <input type="hidden" name="hidden" size="50" value="<?= $count ?>">
     <input name="Submit" type="submit" value="Відправити"><br />
     <input name="Clear" type="submit" value="Заново">
