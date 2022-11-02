@@ -50,10 +50,12 @@
     $count = 0;
     $text = "";
     $nameErr = "";
+    ob_end_flush();
     header("Location:" . $_SERVER['PHP_SELF']); // Перечитуємо ту ж саму сторінку
     exit; // Выход
   }
   ?>
+  <?php ob_start(); ?>
   <p>Вгадай число от 1 до 8:</p>
   <form action="<?= $_SERVER['PHP_SELF'] ?>" name="myform" method="POST">
     <input type="text" name="my_number" size="5" min="1" max="8"><?= $text ?><?= $nameErr ?><br />
